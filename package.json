@@ -1,0 +1,27 @@
+{
+  "name": "Decentralized-Autonomous-Organization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@openzeppelin/test-helpers": "^0.5.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hsien-HsiuLiao/Decentralized-Autonomous-Organization.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hsien-HsiuLiao/Decentralized-Autonomous-Organization/issues"
+  },
+  "homepage": "https://github.com/Hsien-HsiuLiao/Decentralized-Autonomous-Organization#readme"
+}
