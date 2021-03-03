@@ -1,4 +1,6 @@
-# Decentralized-Autonomous-Organization-
+# Decentralized Autonomous Organization
+
+Smart contract investment fund controlled by its investors. 
 
 `npm install`
 
