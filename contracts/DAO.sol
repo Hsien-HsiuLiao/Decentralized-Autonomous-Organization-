@@ -5,9 +5,12 @@ pragma solidity ^0.7.0;
  * DAO contract:
  * 1. Collects investors money (ether)
  * 2. Keep track of investor contributions with shares
- * 3. Allow investors to transfer shares
- * 4. allow investment proposals to be created and voted
- * 5. execute successful investment proposals (i.e send money)
+ * 3. Allow investors to transfer shares (ex. maybe in future investor wants to sell 
+        shares and get out of smart contract)
+ * 4. allow investment proposals to be created and voted by investors, after proposal 
+        reaches certain majority, it will be carried out
+ * 5. execute successful investment proposals (i.e send money), send ether from DAO smart contract
+        to another smart contract that is supposed to represent investment
  */
 
 contract DAO {
@@ -24,8 +27,8 @@ contract DAO {
     mapping(address => uint) public shares;
     mapping(address => mapping(uint => bool)) public votes;
     mapping(uint => Proposal) public proposals;
-    uint public totalShares;
-    uint public availableFunds;
+    uint public totalShares; //total # of shares created since beginning of DAO contract
+    uint public availableFunds; // total available funds in ether
     uint public contributionEnd;
     uint public nextProposalId;
     uint public voteTime;
