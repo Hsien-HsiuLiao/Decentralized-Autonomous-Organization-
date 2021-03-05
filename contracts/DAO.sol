@@ -51,6 +51,7 @@ contract DAO {
         availableFunds += msg.value;
     }
     
+    //redeemShare and transferShare (implmentation of comment 3)
     function redeemShare(uint amount) external {
         require(shares[msg.sender] >= amount, 'not enough shares');
         require(availableFunds >= amount, 'not enough available funds');
