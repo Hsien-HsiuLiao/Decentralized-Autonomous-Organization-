@@ -75,8 +75,8 @@ contract DAO {
             amount,
             recipient,
             0,
-            //block.timestamp + voteTime,
-            now + voteTime,
+            block.timestamp + voteTime,
+            //now + voteTime,
             false
         );
         availableFunds -= amount;
