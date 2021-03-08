@@ -17,7 +17,7 @@ contract DAO {
     struct Proposal {
         uint id;
         string name;
-        uint amount;
+        uint amount; //in ether
         address payable recipient;
         uint votes;
         uint end;
@@ -25,7 +25,7 @@ contract DAO {
     }
     mapping(address => bool) public investors;
     mapping(address => uint) public shares;
-    mapping(address => mapping(uint => bool)) public votes;
+    mapping(address => mapping(uint => bool)) public votes; //check if investor already voted for proposal
     mapping(uint => Proposal) public proposals;
     uint public totalShares; //total # of shares created since beginning of DAO contract
     uint public availableFunds; // total available funds in ether
@@ -66,7 +66,7 @@ contract DAO {
         shares[to] += amount;
         investors[to] = true;
     }
-    
+    //comment 4 implementation (create and vote)
     function createProposal(string memory name, uint amount, address payable recipient) external onlyInvestors() {
         require(availableFunds >= amount, 'amount too big');
         proposals[nextProposalId] = Proposal(
@@ -75,12 +75,14 @@ contract DAO {
             amount,
             recipient,
             0,
-            block.timestamp + voteTime,
+            //block.timestamp + voteTime,
+            now + voteTime,
             false
         );
+        availableFunds -= amount;
         nextProposalId++;
     }
-    
+    //comment 4 implementation (create and vote)
     function vote(uint proposalId) external onlyInvestors() {
         Proposal storage proposal = proposals[proposalId];
         require(votes[msg.sender][proposalId] == false, 'investor can only vote once for a proposal');
@@ -89,6 +91,7 @@ contract DAO {
         proposal.votes += shares[msg.sender];
     }
     
+    //comment 5 implementation 
     function executeProposal(uint proposalId) external onlyAdmin() {
         Proposal storage proposal = proposals[proposalId];
         require(block.timestamp >= proposal.end, 'cannot execute proposal before end date');
@@ -108,7 +111,7 @@ contract DAO {
         to.transfer(amount);
     }
     
-    //For ether returns of proposal investments
+    //For ether returns of proposal investments (fallback function)
     receive() payable external {
         availableFunds += msg.value;
     }
