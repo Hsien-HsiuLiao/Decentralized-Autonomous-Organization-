@@ -1,6 +1,6 @@
 # Decentralized Autonomous Organization
 
-Smart contract investment fund controlled by its investors. 
+DAO - Smart contract investment fund controlled by its investors. Closed end fund (time limit)
 
 `npm install`
 
