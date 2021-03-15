@@ -17,3 +17,16 @@ then,
 `cd client`
 
   `npm start`
+
+  example: 
+
+  deploy DAO with 30 sec contributionTime, 30 sec voteTime, 2/3 quorum (67)
+
+  then each investor contributes ether(shares)
+
+  investor then creates a proposal, then other investors have 30 seconds to vote
+
+  admin executes proposal which shuld deposit ether in receiving account address
+
+
+
