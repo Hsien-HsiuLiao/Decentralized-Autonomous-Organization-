@@ -149,7 +149,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="text-center">DAO</h1><h2>(show current account address)</h2>
+      <h1 className="text-center">DAO</h1>
+      <h4>current account address: </h4>{accounts}
 
       <p>Shares: {shares}</p>
 
