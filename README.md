@@ -26,7 +26,7 @@ then,
 
   investor then creates a proposal, then other investors have 30 seconds to vote
 
-  admin executes proposal which shuld deposit ether in receiving account address
+  admin executes proposal which should deposit ether in receiving account address
 
 
 
