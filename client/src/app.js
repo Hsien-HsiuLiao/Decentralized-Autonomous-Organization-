@@ -20,7 +20,7 @@ function App() {
         DAO.abi,
         deployedNetwork && deployedNetwork.address,
       );
-
+        
       const admin = await contract.methods
         .admin()
         .call();
@@ -29,6 +29,9 @@ function App() {
       setAccounts(accounts);
       setContract(contract);
       setAdmin(admin);
+
+        //find out if current account, accounts[0] is investor
+        // await contract.methods.investors(accounts[0]).call() =true?
     }
     init();
     window.ethereum.on('accountsChanged', accounts => {
@@ -53,6 +56,7 @@ function App() {
   }, [accounts, contract, web3, admin]);
 
   async function updateShares() {
+    console.log(accounts[0]);
     const shares = await contract.methods
       .shares(accounts[0])
       .call();
@@ -178,7 +182,7 @@ function App() {
 
       <div className="row">
         <div className="col-sm-12">
-          <h2>Contribute</h2>
+          <h2>Contribute - (become an investor)</h2>
           <form onSubmit={e => contribute(e)}>
             <div className="form-group">
               <label htmlFor="amount">Amount</label>
@@ -190,6 +194,9 @@ function App() {
       </div>
 
       <hr/>
+{/* only display if account is investor
+{ isInvestor ? (<> html code </> ) : null}
+*/ }
 
       <div className="row">
         <div className="col-sm-12">
@@ -205,6 +212,7 @@ function App() {
       </div>
 
       <hr/>
+{/* only display if account is investor*/ }
 
       <div className="row">
         <div className="col-sm-12">
@@ -224,6 +232,7 @@ function App() {
       </div>
 
       <hr/>
+{/* only display if account is investor*/ }
 
       <div className="row">
         <div className="col-sm-12">
