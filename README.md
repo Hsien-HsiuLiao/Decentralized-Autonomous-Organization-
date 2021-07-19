@@ -22,11 +22,11 @@ then,
 
   deploy DAO with 30 sec contributionTime, 30 sec voteTime, 2/3 quorum (67)
 
-  then each investor contributes ether(shares)
+  then each investor contributes ether and receives shares in return (1 wei = 1 share)
 
   investor then creates a proposal, then other investors have 30 seconds to vote
 
-  admin executes proposal which should deposit ether in receiving account address
+  admin executes proposal which should deposit ether in receiving account address representing proposal
 
 
 
