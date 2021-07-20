@@ -9,6 +9,7 @@ function App() {
   const [admin, setAdmin] = useState(undefined);
   const [shares, setShares] = useState(undefined);
   const [proposals, setProposals] = useState([]);
+  const [isInvestor, setInvestorStatus] = useState(undefined);
 
   useEffect(() => {
     const init = async () => {
@@ -25,11 +26,16 @@ function App() {
         .admin()
         .call();
 
+      
+
       setWeb3(web3);
       setAccounts(accounts);
       setContract(contract);
       setAdmin(admin);
 
+      const isInvestor = await contract.methods.investors(accounts[0]).call();
+      setInvestorStatus(isInvestor);
+        console.log("status init: ", isInvestor);
         //find out if current account, accounts[0] is investor
         // await contract.methods.investors(accounts[0]).call() =true?
     }
@@ -53,14 +59,18 @@ function App() {
       updateShares();
       updateProposals();
     }
-  }, [accounts, contract, web3, admin]);
+  }, [accounts, contract, web3, admin, isInvestor]);
 
   async function updateShares() {
-    console.log(accounts[0]);
+    console.log("updateShares() called:",accounts[0]);
     const shares = await contract.methods
       .shares(accounts[0])
       .call();
     setShares(shares);
+    //setInvestorStatus
+    const isInvestor = await contract.methods.investors(accounts[0]).call();
+    console.log("isInvestor: ", isInvestor);
+    setInvestorStatus(isInvestor);
   }
 
   async function updateProposals() {
@@ -102,6 +112,9 @@ function App() {
       .contribute()
       .send({from: accounts[0], value: amount});
     await updateShares();
+   // const isInvestor = await contract.methods.investors(accounts[0]).call();
+  //  console.log("isInvestor: ", isInvestor);
+   // setInvestorStatus(isInvestor);
   };
 
   async function redeemShares(e) {
@@ -154,8 +167,8 @@ function App() {
   return (
     <div className="container">
       <h1 className="text-center">DAO</h1>
-      <h4>current account address: </h4>{accounts}
-
+      <h4>current account address: {accounts}</h4>
+      <h4>Investor status: {String(isInvestor)}</h4>
       <p>Shares: {shares}</p>
 
       {accounts[0].toLowerCase() === admin.toLowerCase() ? (
@@ -195,9 +208,10 @@ function App() {
 
       <hr/>
 {/* only display if account is investor
-{ isInvestor ? (<> html code </> ) : null}
+ html code 
 */ }
-
+    { isInvestor ? (
+      <>
       <div className="row">
         <div className="col-sm-12">
           <h2>Redeem shares</h2>
@@ -212,6 +226,10 @@ function App() {
       </div>
 
       <hr/>
+
+      </> 
+      ) : null}
+
 {/* only display if account is investor*/ }
 
       <div className="row">
