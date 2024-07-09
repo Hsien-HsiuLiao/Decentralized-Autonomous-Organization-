@@ -9,7 +9,12 @@
   "dependencies": {
     "@openzeppelin/test-helpers": "^0.5.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@nomiclabs/hardhat-truffle5": "^2.0.7",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "hardhat": "^2.22.6",
+    "web3": "^1.10.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
