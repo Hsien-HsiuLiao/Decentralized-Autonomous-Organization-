@@ -6,9 +6,13 @@ DAO - Smart contract investment fund controlled by its investors. Closed end fun
 
 `truffle test`
 
+nvm use 16.20
+
+npm install -D hardhat
+
 To view frontend in browser, first run development blockchain
 
-`truffle develop`
+`truffle develop` -- npx hardhat node
 
 `migrate --reset`
 
